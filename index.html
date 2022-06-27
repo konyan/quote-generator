@@ -7,24 +7,83 @@
     <title>HTML TEMPLATE</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="./config.js"></script>
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <script>
+      console.log("NLINIE");
+    </script>
   </head>
   <body>
-    <h1 class="text-3xl font-bold underline text-clifford">Hello world!</h1>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-6 w-6"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      stroke-width="2"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
-      />
-    </svg>
-    <script src="./index.js"></script>
+    <div class="container mx-auto mt-8">
+      <div class="border-2 mx-auto p-4" id="quote-container">
+        <div class="flex">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 mr-8"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"
+            />
+          </svg>
+          <h2 id="quote-text" class="font-bold text-xl">hello world</h2>
+        </div>
+        <div class="flex justify-between w-full mr-8 mt-4">
+          <ul class="w-full flex flex-1" id="topics"></ul>
+          <span
+            id="quote-author"
+            class="font-regular text-base flex-1 flex justify-end items-center"
+          >
+            Buddha ,
+            <small class="text-sm" id="author-profession">PHLIOSOPHER</small>
+          </span>
+        </div>
+      </div>
+      <div class="mt-8 flex justift-center gap-8">
+        <button
+          type="button"
+          id="twitter"
+          class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          <svg
+            class="mr-1 h-5 w-5"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+            />
+            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+          </svg>
+        </button>
+        <button
+          id="new-quote"
+          type="button"
+          class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          New Quote
+          <!-- Heroicon name: solid/mail -->
+          <svg
+            class="ml-2 -mr-1 h-5 w-5"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+            />
+            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <script src="./script.js" async type="module"></script>
   </body>
 </html>
