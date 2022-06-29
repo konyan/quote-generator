@@ -1,49 +1,79 @@
 import { QUOTES } from "./quote.js";
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
+function getRandomInt() {
+  return Math.floor(Math.random() * QUOTES.length);
 }
 
-let RANDOM_VALUE = getRandomInt(QUOTES.length);
+function generateProfessionText(innerText) {
+  const quoteProfession = document.createElement("small");
+  quoteProfession.classList = "text-sm";
+  quoteProfession.id = "author-profession";
+  quoteProfession.innerText = innerText;
+
+  return quoteProfession;
+}
+
+function generateTopicItem(listDOM, items) {
+  listDOM.innerHTML = "";
+  for (let t of items) {
+    const topicItem = document.createElement("li");
+    topicItem.classList =
+      "rounded-full bg-indigo-600 px-4 flex items-center text-white h-8 ml-2";
+    topicItem.innerText = t;
+    listDOM.append(topicItem);
+  }
+}
+
+let RANDOM_VALUE = getRandomInt();
+
+// INITIAL QUOTE
 let DEFAULT_QUOTE = QUOTES[RANDOM_VALUE];
 
-console.log("DFAU", DEFAULT_QUOTE);
-
+// REGISTER JS by ID
 const quoteText = document.getElementById("quote-text");
 const quoteAuthor = document.getElementById("quote-author");
-
-{
-  /* <small>hello World</small> */
-}
-const quoteProfession = document.createElement("small");
-quoteProfession.classList = "text-sm";
-quoteProfession.id = "author-profession";
-quoteProfession.innerText = DEFAULT_QUOTE["profession"];
-
-quoteText.innerText = DEFAULT_QUOTE["quote"];
-quoteAuthor.innerText = `${DEFAULT_QUOTE["author"]} ; `;
-quoteAuthor.append(quoteProfession);
-
 const topicDOMUL = document.getElementById("topics");
-const topicItems = DEFAULT_QUOTE["topics"];
+const btnNew = document.getElementById("new-quote");
+const btnShare = document.getElementById("btn-share");
 
-{
-  /* <li
-class="rounded-full bg-indigo-600 px-4 flex items-center text-white h-8"
->
-hello
-</li> */
+// SET VALUE FOR INITIAL CONDITION
+function initLoad() {
+  quoteText.innerText = DEFAULT_QUOTE["quote"];
+  quoteAuthor.innerText = `${DEFAULT_QUOTE["author"]} ; `;
+
+  const professionDOM = generateProfessionText(DEFAULT_QUOTE["profession"]);
+  quoteAuthor.append(professionDOM);
+
+  const topicItems = DEFAULT_QUOTE["topics"];
+  generateTopicItem(topicDOMUL, topicItems);
 }
 
-for (let t of topicItems) {
-  const topicItem = document.createElement("li");
-  topicItem.classList =
-    "rounded-full bg-indigo-600 px-4 flex items-center text-white h-8 ml-2";
-  topicItem.innerText = t;
-  topicDOMUL.append(topicItem);
+// GENERTE NEW QHKOTE
+function btnNewQuote() {
+  console.log("HEO");
+  const randIndex = getRandomInt();
+  let newQuote = QUOTES[randIndex];
+
+  quoteText.innerText = newQuote["quote"];
+  quoteAuthor.innerText = `${newQuote["author"]} ; `;
+
+  quoteAuthor.append(generateProfessionText(newQuote["profession"]));
+
+  const topicItems = newQuote["topics"];
+  generateTopicItem(topicDOMUL, topicItems);
 }
-//append
-//createElement
-//getElementById
-//innnerHTML
-//innerText
+
+// SHARE TWIITER FUNCTION
+function btnShareTwitter(quoteText, authorName) {
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${quoteText}-${authorName}`;
+  window.open(twitterUrl, "_blank");
+}
+
+// document.addEventListener("click",)
+btnNew.addEventListener("click", btnNewQuote);
+btnShare.addEventListener(
+  "click",
+  btnShareTwitter(quoteText.innerText, quoteAuthor.innerText)
+);
+
+initLoad();
